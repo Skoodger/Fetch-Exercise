@@ -1,0 +1,36 @@
+```{r}
+install.packages('psych')
+```
+
+
+```{r}
+#load data
+users <- read.csv('users.csv')
+brands <- read.csv('brands.csv')
+receipts <- read.csv('receipts.csv')
+```
+
+```{r}
+library('psych')
+
+#Numerical analysis
+describe(users)
+describe(brands)
+describe(receipts)
+```
+```{r}
+library('tidyverse')
+
+#checking for NULL values
+a <- tibble(users)
+sum(map_dbl(a, ~length(~.x) > 0))
+
+b <- tibble(brands)
+sum(map_dbl(b, ~length(~.x) > 0))
+
+c <- tibble(receipts)
+sum(map_dbl(c, ~length(~.x) > 0))
+
+```
+
+

@@ -1,0 +1,38 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+install.packages('RJSONIO')
+install.packages('jsonlite')
+```
+
+
+```{r}
+library('RJSONIO')
+
+users <- fromJSON('users.json')
+json_file <- lapply(users, function(x) {
+  x[sapply(x, is.null)] <- NA
+  unlist(x)
+})
+
+print(users)
+
+```
+
+```{r}
+library(jsonlite)
+
+users_gz <-stream_in(url("https://fetch-hiring.s3.amazonaws.com/data-analyst/ineeddata-data-modeling/users.json.gz")
+ )
+```
+```{r}
+require(jsonlite)
+require(tidyr) # or require(tidyverse)
+dat <- fromJSON("users.json", flatten = TRUE) 
+# flatten = TRUE flattens dets
+print(dat)
+```
+
